@@ -38,6 +38,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "BYTGPIO.h"
 //
 //https://www.intel.com/content/www/us/en/embedded/products/bay-trail/atom-e3800-family-datasheet.html
