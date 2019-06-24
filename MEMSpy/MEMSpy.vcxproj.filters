@@ -11,12 +11,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BYTGPIO.h">
+    <ClInclude Include="..\includes\UniDump.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BYTGPIOSpy.c">
+    <ClCompile Include="MEMSpy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

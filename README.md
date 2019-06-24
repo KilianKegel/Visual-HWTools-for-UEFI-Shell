@@ -18,12 +18,16 @@ as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 
 ## HowTo
 1. download VS12017 from here: https://visualstudio.microsoft.com/downloads/
-2. select: "Desktop development with C++"
-	![component selection](VS2017-components.png)	
-3. after installation is finished, open _Visual-HWTools-for-UEFI-Shell.sln_
-4. adjust the Windows SDK version: _Project->Retarget Solution_
+2. select : "Desktop development with C++"
+![component selection](VS2017 - components.png)
+3. after installation is finished, open _Visual - HWTools - for - UEFI - Shell.sln_
+4. adjust the Windows SDK version : _Project->Retarget Solution_
 
 ## Revision history
+### 20190624
+* add MEMSpy
+* update Torito C Library to version 20190621/R133
+
 ### 20190213/2 - bugfix, update
 * add missing include file
 * add HowTo

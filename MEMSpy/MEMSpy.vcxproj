@@ -16,10 +16,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{db83aa6a-a239-41d4-a3e0-647aed017fee}</ProjectGuid>
+    <ProjectGuid>{dc18fecf-2b63-4f01-b592-eca56492ae4d}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>BYTGPIOSpy</RootNamespace>
-    <ProjectName>BYTGPIOSpy</ProjectName>
+    <RootNamespace>MEMSpy</RootNamespace>
+    <ProjectName>MEMSpy</ProjectName>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -96,6 +96,7 @@
       <AdditionalOptions>/D_NO_CRT_STDIO_INLINE %(AdditionalOptions)</AdditionalOptions>
       <CompileAs>CompileAsC</CompileAs>
       <AssemblerOutput>All</AssemblerOutput>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,7 +149,7 @@
       <FunctionLevelLinking>
       </FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_NO_CRT_STDIO_INLINE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_NO_CRT_STDIO_INLINE;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <DebugInformationFormat>None</DebugInformationFormat>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -181,7 +182,7 @@
       <ImportLibrary>
       </ImportLibrary>
       <MapExports>true</MapExports>
-      <AdditionalOptions>..\libraries\toritoC64R.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>..\libraries\toritoC64R.lib ..\libraries\UniDumpLibrary.lib %(AdditionalOptions)</AdditionalOptions>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <LinkTimeCodeGeneration />
@@ -191,10 +192,10 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BYTGPIOSpy.c" />
+    <ClCompile Include="MEMSpy.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BYTGPIO.h" />
+    <ClInclude Include="..\includes\UniDump.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

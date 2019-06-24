@@ -268,7 +268,7 @@ int main(int argc, char **argv)
         outpd(0xCF8, 0x80000000 + (0 << 16) + (0 << 11) + (0 << 8) + 0);// get vendor/device ID
         
         if (0x0F008086 != inpd(0xCFC)) {
-//            printf("non-BayTrail\n");
+            printf("non-BayTrail\n");
             nRet = 1;
             break;
         }

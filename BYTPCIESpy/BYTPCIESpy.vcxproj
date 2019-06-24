@@ -146,7 +146,8 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MinSpace</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_NO_CRT_STDIO_INLINE</PreprocessorDefinitions>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -181,9 +182,10 @@
       <ImportLibrary>
       </ImportLibrary>
       <MapExports>true</MapExports>
-      <AdditionalOptions>..\libraries\toritoC64R.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>..\libraries\toritoC64R.lib ..\libraries\UniDumpLibrary.lib %(AdditionalOptions)</AdditionalOptions>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
+      <LinkTimeCodeGeneration />
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -193,16 +195,15 @@
     <ClCompile Include="ClassCodes.c" />
     <ClCompile Include="PCIEDump.c" />
     <ClCompile Include="PCIEList.c" />
-    <ClCompile Include="_UniDump.c" />
-    <ClCompile Include="main.c" />
+    <ClCompile Include="BYTPCIESpy.c" />
     <ClCompile Include="PCIEView.c" />
     <ClCompile Include="VendorID.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\includes\UniDump.h" />
     <ClInclude Include="BYTPCIE.h" />
     <ClInclude Include="PCIEDump.h" />
     <ClInclude Include="PCIEList.h" />
-    <ClInclude Include="_UniDump.h" />
     <ClInclude Include="PCIEView.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

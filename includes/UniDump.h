@@ -34,12 +34,12 @@ typedef union _UNIDUMPPARM {
                                 1 == "%08llX: "
                                 2 == "%04llX: "
                                 3 == "%02llX: "
-                                4 == ""                                                 */
-        unsigned nBytesPerLine : 7;/*!< nBytesPerLine minus one bytes per line - 0 == 16, */
-        unsigned fNoAscii : 1;  /*!<append NO ASCII characters                          */
-        unsigned fBaseOfs : 1;  /*!<base and offset, offset only otherwise              */
-        unsigned fNoDash  : 1;  /*!<print dash "-" in between                           */
-        unsigned pitch : 8; /*!<pitch between two consecutive elements fo size elmsize  */
+                                4 == ""                                                     */
+        unsigned nBytesPerLine : 7;/*!< nBytesPerLine minus one bytes per line - 0 == 16,   */
+        unsigned fNoAscii : 1;  /*!<append NO ASCII characters                              */
+        unsigned fBaseOfs : 1;  /*!<base and offset, offset only otherwise                  */
+        unsigned fNoDash  : 1;  /*!<print dash "-" in between                               */
+        unsigned pitch : 8;     /*!<pitch between two consecutive elements fo size elmsize  */
     }bit;
 }UNIDUMPPARM;
 

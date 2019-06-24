@@ -23,8 +23,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include "_UniDump.h"
-#include "BYTPCIE.h"
+#include "..\includes\UniDump.h"
 
 static const char szTwoSpaces[] = { 0x20,'\0' };
 static const char szOneSpace [] = { 0x20,'\0' };
@@ -53,7 +52,7 @@ static int PrintAscii(char *pBuffer, unsigned elmsize, unsigned cToPrint,unsigne
     unsigned j;
 
     #define PRINTREVERSE for (k = elmsize - 1 ; k != (unsigned)-1 ; k--){\
-                             sprintf(&pTextLineBuf[strlen(pTextLineBuf)],"%c", isgraph(pLit2Big[k]) ? 0xFF & pLit2Big[k] : '.'); \
+                             sprintf(&pTextLineBuf[strlen(pTextLineBuf)],"%c", isalnum(pLit2Big[k]) ? 0xFF & pLit2Big[k] : '.'); \
                          }\
                          if (elmsize - 1){/*!< add space between ASCII char, except in 8-bit format*/\
                              sprintf(&pTextLineBuf[strlen(pTextLineBuf)]," ");\

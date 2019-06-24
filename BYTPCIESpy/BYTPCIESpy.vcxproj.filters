@@ -14,9 +14,6 @@
     <ClCompile Include="ClassCodes.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="VendorID.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -29,7 +26,7 @@
     <ClCompile Include="PCIEDump.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_UniDump.c">
+    <ClCompile Include="BYTPCIESpy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -46,7 +43,7 @@
     <ClInclude Include="PCIEDump.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_UniDump.h">
+    <ClInclude Include="..\includes\UniDump.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

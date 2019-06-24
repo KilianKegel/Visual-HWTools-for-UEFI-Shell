@@ -20,6 +20,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include "..\includes\UniDump.h"
 #include "BYTPCIE.h"
 
 //
