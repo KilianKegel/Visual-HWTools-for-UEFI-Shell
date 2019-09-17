@@ -24,6 +24,10 @@ as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 4. adjust the Windows SDK version : _Project->Retarget Solution_
 
 ## Revision history
+### 20190917
+* update to VS2019 Version 16.2.4 (Spectre Support)
+* allow build in all 3 solution configurations: Efi, Win64(Torito C) and Wind64(Microsoft)
+
 ### 20190624
 * add MEMSpy
 * update Torito C Library to version 20190621/R133
