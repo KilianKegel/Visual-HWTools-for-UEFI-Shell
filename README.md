@@ -17,13 +17,13 @@ on the Windows development platform, simply by building the sourcecode
 as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 
 ## HowTo
-1. download VS12017 from here: https://visualstudio.microsoft.com/downloads/
-2. select : "Desktop development with C++"
-![component selection](VS2017 - components.png)
-3. after installation is finished, open _Visual - HWTools - for - UEFI - Shell.sln_
-4. adjust the Windows SDK version : _Project->Retarget Solution_
+https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an-uefi-development-pc
 
 ## Revision history
+### 20190929
+* update to Torito C Library ver. R138
+* update copyright
+
 ### 20190917
 * update to VS2019 Version 16.2.4 (Spectre Support)
 * allow build in all 3 solution configurations: Efi, Win64(Torito C) and Wind64(Microsoft)
