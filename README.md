@@ -20,6 +20,12 @@ as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an-uefi-development-pc
 
 ## Revision history
+https://github.com/KilianKegel/torito-C-Library#revision-history
+
+### 20191224/R152
+* Update to torito-C 20191126/R152
+* add VMODE tool, to list GOP video modes and to change video mode
+* update to VS2019 ver 16.4.2
 ### 20191018/R141
 * update Torito C Library https://github.com/KilianKegel/torito-C-Library#20191017r141
 ### 20190929

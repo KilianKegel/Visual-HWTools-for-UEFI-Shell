@@ -25,6 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vmode", "Vmode\Vmode.vcxproj", "{7417B457-C8ED-419F-9466-A6AB9A424BDB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{44318EC3-5F68-458E-B110-2CF32114745F} = {44318EC3-5F68-458E-B110-2CF32114745F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Efi64|x64 = Efi64|x64
@@ -60,6 +65,12 @@ Global
 		{DC18FECF-2B63-4F01-B592-ECA56492AE4D}.Win64.msft|x64.Build.0 = Win64.msft|x64
 		{DC18FECF-2B63-4F01-B592-ECA56492AE4D}.Win64|x64.ActiveCfg = Win64|x64
 		{DC18FECF-2B63-4F01-B592-ECA56492AE4D}.Win64|x64.Build.0 = Win64|x64
+		{7417B457-C8ED-419F-9466-A6AB9A424BDB}.Efi64|x64.ActiveCfg = Efi64|x64
+		{7417B457-C8ED-419F-9466-A6AB9A424BDB}.Efi64|x64.Build.0 = Efi64|x64
+		{7417B457-C8ED-419F-9466-A6AB9A424BDB}.Win64.msft|x64.ActiveCfg = Win64.msft|x64
+		{7417B457-C8ED-419F-9466-A6AB9A424BDB}.Win64.msft|x64.Build.0 = Win64.msft|x64
+		{7417B457-C8ED-419F-9466-A6AB9A424BDB}.Win64|x64.ActiveCfg = Win64|x64
+		{7417B457-C8ED-419F-9466-A6AB9A424BDB}.Win64|x64.Build.0 = Win64|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

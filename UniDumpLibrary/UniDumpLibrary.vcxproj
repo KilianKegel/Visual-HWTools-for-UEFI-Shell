@@ -76,7 +76,7 @@
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <ExceptionHandling />
+      <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <TreatWChar_tAsBuiltInType />
       <CompileAs>CompileAsC</CompileAs>
