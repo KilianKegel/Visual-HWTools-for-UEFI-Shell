@@ -22,7 +22,11 @@ https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an
 ## Revision history
 https://github.com/KilianKegel/torito-C-Library#revision-history
 
-### 20191224/R152
+### 20200204/R154
+* Update to torito-C 20200204/R154
+* adjust solution configurations
+* update copyright
+### 20201224/R152
 * Update to torito-C 20191126/R152
 * add VMODE tool, to list GOP video modes and to change video mode
 * update to VS2019 ver 16.4.2
