@@ -22,6 +22,9 @@ https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an
 ## Revision history
 https://github.com/KilianKegel/torito-C-Library#revision-history
 
+### 20200210
+* add PCISPY sample
+* update various document links
 ### 20200204/R154
 * Update to torito-C 20200204/R154
 * adjust solution configurations

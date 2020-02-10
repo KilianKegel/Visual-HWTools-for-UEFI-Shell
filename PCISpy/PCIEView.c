@@ -27,7 +27,7 @@
 #include "BYTPCIE.h"
 #include "PCIEList.h"
 //
-////https://www.mouser.com/datasheet/2/612/atom-e3800-family-datasheet-1522396.pdf
+//https://www.mouser.com/datasheet/2/612/atom-e3800-family-datasheet-1522396.pdf
 //http://pciids.sourceforge.net/v2.2/pci.ids
 //http://www.ics.uci.edu/~harris/ics216/pci/PCI_22.pdf
 //https://cds.cern.ch/record/551427/files/cer-2308933.pdf
@@ -35,6 +35,11 @@
 
 extern CLASSCODE ClassCodes[]; ;/*! */
 extern VENDORID VendorID[];
+
+extern unsigned long GetPci8 (void* pAddr);
+extern unsigned long GetPci16(void* pAddr);
+extern unsigned long GetPci32(void* pAddr);
+extern unsigned long SetPci32(void* pAddr, unsigned value);
 
 /*!
     @fn void PCIEDump(int bus, int dev, int fun, PCIEDUMPPARM *pPcieView)
@@ -52,7 +57,7 @@ extern VENDORID VendorID[];
 */
 void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
 
-    volatile unsigned *pPCIEReg32 = (unsigned *)( (unsigned)pPcieView->pciebase + ( bus << 20 ) + ( dev << 15 ) + ( fun << 12 ) + 0 );
+    unsigned PCIEFunAddr = (( bus << 20 ) + ( dev << 15 ) + ( fun << 12 ));
     PCIELISTPARM PcieListParm;
 
     PcieListParm.pciebase = pPcieView->pciebase;
@@ -67,12 +72,12 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
         int v;
         for ( v = 0; NULL != VendorID[v].szVendor; v++ )
         {
-            if ( (unsigned)( pPCIEReg32[0] & 0xFFFF ) == (unsigned)VendorID[v].wVendorID )
+            if ( (unsigned)( GetPci16((void*)(PCIEFunAddr + 0)) & 0xFFFF ) == (unsigned)VendorID[v].wVendorID )
                 break;
         }
-        printf( "Vendor ID: %04X (%s) Device ID: %04X\n", (unsigned)( pPCIEReg32[0] & 0xFFFF ), \
+        printf( "Vendor ID: %04X (%s) Device ID: %04X\n", (unsigned)(GetPci32((void*)(PCIEFunAddr + 0)) & 0xFFFF ), \
                 NULL != VendorID[v].szVendor ? VendorID[v].szVendor : "unknown device vendor", \
-                (unsigned)( pPCIEReg32[0] >> 16 ) );
+                (unsigned)(GetPci32((void*)(PCIEFunAddr + 0)) >> 16 ) );
 
     }
 
@@ -82,7 +87,7 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
             CommandReg, offset 4, DWORD 1 [15:0]
         */
         int i;
-        unsigned cmdreg = pPCIEReg32[1] & 0xFFFF;
+        unsigned cmdreg = GetPci16((void*)(PCIEFunAddr + 1 * 4)) & 0xFFFF;
         unsigned mask;
         unsigned fld;
 
@@ -119,7 +124,7 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
             StatusReg, offset 4, DWORD 1 [31:16]
         */
         int i;
-        unsigned cmdreg = ( pPCIEReg32[1] >> 16 ) & 0xFFFF;
+        unsigned cmdreg = (GetPci32((void*)(PCIEFunAddr + 1 * 4)) >> 16 ) & 0xFFFF;
         unsigned mask;
         unsigned fld;
 
@@ -150,27 +155,27 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
 
         }
     }
-    printf( "Revision ID 0x%02X\n", pPCIEReg32[2] & 0xFF );        // page 771
-    printf( "Cache Line Size 0x%02X\n", pPCIEReg32[3] & 0xFF );    // page 771
-    printf( "Latency Timer 0x%02X\n", pPCIEReg32[3] >> 8 & 0xFF ); // page 771
-    printf( "Header Type 0x%02X\n", pPCIEReg32[3] >> 16 & 0xFF );  // page 771
-    printf( "BIST 0x%02X\n", pPCIEReg32[3] >> 20 & 0xFF );         // page 771
+    printf( "Revision ID 0x%02X\n", GetPci32((void*)(PCIEFunAddr + 2 * 4)) & 0xFF );        // page 771
+    printf( "Cache Line Size 0x%02X\n", GetPci32((void*)(PCIEFunAddr + 3 * 4)) & 0xFF );    // page 771
+    printf( "Latency Timer 0x%02X\n", GetPci32((void*)(PCIEFunAddr + 3 * 4)) >> 8 & 0xFF ); // page 771
+    printf( "Header Type 0x%02X\n", GetPci32((void*)(PCIEFunAddr + 3 * 4)) >> 16 & 0xFF );  // page 771
+    printf( "BIST 0x%02X\n", GetPci32((void*)(PCIEFunAddr + 3 * 4)) >> 20 & 0xFF );         // page 771
 
-    printf( "Interrupt Pin: %d\n", pPCIEReg32[15] >> 8 & 0xFF );
-    printf( 0xFF ==  (pPCIEReg32[15] >> 0 & 0xFF) ? "Interrupt Line: not assigned\n" : "Interrupt Line: %d\n", pPCIEReg32[15] >> 0 & 0xFF );
+    printf( "Interrupt Pin: %d\n", GetPci32((void*)(PCIEFunAddr + 15 * 4)) >> 8 & 0xFF );
+    printf( 0xFF ==  (GetPci32((void*)(PCIEFunAddr + 15 * 4)) >> 0 & 0xFF) ? "Interrupt Line: not assigned\n" : "Interrupt Line: %d\n", GetPci32((void*)(PCIEFunAddr + 15 * 4)) >> 0 & 0xFF );
 
-    if ( !( ( 3 << 16 ) & pPCIEReg32[3] ) )// Min_Gnt/Max_Gnt
+    if ( !( ( 3 << 16 ) & GetPci32((void*)(PCIEFunAddr + 3 * 4))) )// Min_Gnt/Max_Gnt
     {
-        printf( "Min_Gnt: %d\n", pPCIEReg32[15] >> 16 & 0xFF );
-        printf( "Max_Gnt: %d\n", pPCIEReg32[15] >> 20 & 0xFF );
+        printf( "Min_Gnt: %d\n", GetPci32((void*)(PCIEFunAddr + 15 * 4)) >> 16 & 0xFF );
+        printf( "Max_Gnt: %d\n", GetPci32((void*)(PCIEFunAddr + 15 * 4)) >> 20 & 0xFF );
     }
 
-    if ( 1 == ( ( 3 << 16 ) & pPCIEReg32[3] ) ){//bridge control
+    if ( 1 == ( ( 3 << 16 ) & GetPci32((void*)(PCIEFunAddr + 3 * 4))) ){//bridge control
             /*!
                 BridgeCtrlReg, DWORD 15 [31:16]
             */
             int i;
-            unsigned cmdreg = ( pPCIEReg32[15] >> 16 ) & 0xFFFF;
+            unsigned cmdreg = (GetPci32((void*)(PCIEFunAddr + 15 * 4)) >> 16 ) & 0xFFFF;
             unsigned mask;
             unsigned fld;
 
@@ -201,34 +206,34 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
             }
         }
 
-    if ( !( ( 3 << 16 ) & pPCIEReg32[3] ) )// SubSys/Vendor only av. in headertype 0
+    if ( !( ( 3 << 16 ) & GetPci32((void*)(PCIEFunAddr + 3 * 4))))// SubSys/Vendor only av. in headertype 0
     {
         int i;
         printf( "Subvendor ID: 0x%04X, Subsytem ID: 0x%04X\n",
-                pPCIEReg32[11] & 0xFFFF,
-                pPCIEReg32[11] >> 16 & 0xFFFF );                        // page 771
+            GetPci32((void*)(PCIEFunAddr + 11 * 4)) & 0xFFFF,
+            GetPci32((void*)(PCIEFunAddr + 11 * 4)) >> 16 & 0xFFFF );                        // page 771
 
          /*!
              explore the 6 BARs
          */
         for ( i = 0; i < 6; i++ ) {
             unsigned dwAddress, dwSize, dwSizeKB, dwSizeMB;
-            char fIOBar = 1 & pPCIEReg32[i + 4];
-            char f64BitBar = 4 == ( 6 & pPCIEReg32[i + 4] );
-            char fPrefetchBar = 8 == ( 8 & pPCIEReg32[i + 4] );
+            char fIOBar = 1 & GetPci32((void*)(PCIEFunAddr + (i + 4) * 4));
+            char f64BitBar = 4 == ( 6 & GetPci32((void*)(PCIEFunAddr + (i + 4) * 4)));
+            char fPrefetchBar = 8 == ( 8 & GetPci32((void*)(PCIEFunAddr + (i + 4) * 4)));
             unsigned Mask = ( fIOBar ? ~0x3 : ~0x7F );
             unsigned nMask = 0xFF & ~Mask;
 
-            dwAddress = Mask & pPCIEReg32[i + 4];    // get address and mask non-address bits
+            dwAddress = Mask & GetPci32((void*)(PCIEFunAddr + (i + 4) * 4));    // get address and mask non-address bits
 
-            pPCIEReg32[i + 4] = (unsigned)-1;        // detct BAR ...
+            SetPci32(PCIEFunAddr + (i + 4) * 4, (unsigned)-1);        // detct BAR ...
 
-            dwSize=1 + ( ~Mask | ~pPCIEReg32[i + 4] );
+            dwSize=1 + ( ~Mask | ~GetPci32((void*)(PCIEFunAddr + (i + 4) * 4)));
             dwSize &= fIOBar ? 0xFFFF : (unsigned)-1;
             dwSizeKB = dwSize / 1024;
             dwSizeMB = dwSizeKB / 1024;
 
-            pPCIEReg32[i + 4] = dwAddress;            //restore address
+            SetPci32(PCIEFunAddr + (i + 4) * 4, dwAddress);        //restore address
             if ( 1| dwAddress ) {
                 printf( "BAR%d: Size 0x%08X(%u %sByte), Address 0x%08X %s%s%s\n",
                         i, dwSize,
@@ -245,7 +250,7 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
 
     }
     
-    if ( 1 == ( ( 3 ) & pPCIEReg32[3] >> 16 ) )// explore the 2 bridge BARs
+    if ( 1 == ( ( 3 ) & GetPci32((void*)(PCIEFunAddr + 3 * 4)) >> 16 ) )// explore the 2 bridge BARs
     {
         int i;
          /*!
@@ -253,22 +258,22 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
          */
         for ( i = 0; i < 2; i++ ) {
             unsigned dwAddress, dwSize, dwSizeKB, dwSizeMB;
-            char fIOBar = 1 & pPCIEReg32[i + 4];
-            char f64BitBar = 4 == ( 6 & pPCIEReg32[i + 4] );
-            char fPrefetchBar = 8 == ( 8 & pPCIEReg32[i + 4] );
+            char fIOBar = 1 & GetPci32((void*)(PCIEFunAddr + (i + 4) * 4));
+            char f64BitBar = 4 == ( 6 & GetPci32((void*)(PCIEFunAddr + (i + 4) * 4)));
+            char fPrefetchBar = 8 == ( 8 & GetPci32((void*)(PCIEFunAddr + (i + 4) * 4)));
             unsigned Mask = ( fIOBar ? ~0x3 : ~0x7F );
             unsigned nMask = 0xFF & ~Mask;
 
-            dwAddress = Mask & pPCIEReg32[i + 4];    // get address and mask non-address bits
+            dwAddress = Mask & GetPci32((void*)(PCIEFunAddr + (i + 4) * 4));    // get address and mask non-address bits
 
-            pPCIEReg32[i + 4] = (unsigned)-1;        // detct BAR ...
+            SetPci32((void*)(PCIEFunAddr + (i + 4) * 4), (unsigned)-1);        // detct BAR ...
 
-            dwSize=1 + ( ~Mask | ~pPCIEReg32[i + 4] );
+            dwSize=1 + ( ~Mask | ~GetPci32((void*)(PCIEFunAddr + (i + 4) * 4)));
             dwSize &= fIOBar ? 0xFFFF : (unsigned)-1;
             dwSizeKB = dwSize / 1024;
             dwSizeMB = dwSizeKB / 1024;
 
-            pPCIEReg32[i + 4] = dwAddress;            //restore address
+            SetPci32((void*)(PCIEFunAddr + (i + 4) * 4), dwAddress);            //restore address
             if ( 1 | dwAddress ) {
                 printf( "BAR%d: Size 0x%08X(%u%sByte), Address 0x%08X %s%s%s\n",
                         i, dwSize,
@@ -286,7 +291,7 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
 
     }
     
-    if ( 1 == ( ( 3 ) & pPCIEReg32[3] >> 16 ) )// explore io/mem/prefetch base/limit registers
+    if ( 1 == ( ( 3 ) & GetPci32((void*)(PCIEFunAddr + 3 * 4)) >> 16 ) )// explore io/mem/prefetch base/limit registers
     {
         /*!
             explore io/mem/prefetch base/limit registers
@@ -296,22 +301,22 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
         unsigned MEMBase, MEMLimit, MEMSize, MEMSizeKB, MEMSizeMB;
         unsigned PREBase, PRELimit, PRESize, PRESizeKB, PRESizeMB;
                 
-        IOBase  = (pPCIEReg32[7] >>  0 & ~0xF) << 8;
-        IOLimit = (pPCIEReg32[7] >>  8 & ~0xF) << 8;
+        IOBase  = (GetPci32((void*)(PCIEFunAddr + 7 * 4)) >>  0 & ~0xF) << 8;
+        IOLimit = (GetPci32((void*)(PCIEFunAddr + 7 * 4)) >>  8 & ~0xF) << 8;
         if ( IOBase > IOLimit )
             IOBase = IOLimit = IOSize = 0;
         else
             IOSize = ( IOLimit | 0xFFF ) - IOBase + 1;
         
-        MEMBase = (pPCIEReg32[8] >>  0 & ~0xF) << 16;
-        MEMLimit= (pPCIEReg32[8] >> 16 & ~0xF) << 16;
+        MEMBase = (GetPci32((void*)(PCIEFunAddr + 8 * 4)) >>  0 & ~0xF) << 16;
+        MEMLimit= (GetPci32((void*)(PCIEFunAddr + 8 * 4)) >> 16 & ~0xF) << 16;
         if ( MEMBase > MEMLimit )
             MEMBase = MEMLimit = MEMSize = 0;
         else
             MEMSize = ( MEMLimit | 0xFFFFF ) - MEMBase + 1;
 
-        PREBase = (pPCIEReg32[9] >>  0 & ~0xF) << 16;
-        PRELimit= (pPCIEReg32[9] >> 16 & ~0xF) << 16;
+        PREBase = (GetPci32((void*)(PCIEFunAddr + 9 * 4)) >>  0 & ~0xF) << 16;
+        PRELimit= (GetPci32((void*)(PCIEFunAddr + 9 * 4)) >> 16 & ~0xF) << 16;
         if ( PREBase > PRELimit )
             PREBase = PRELimit = PRESize = 0;
         else

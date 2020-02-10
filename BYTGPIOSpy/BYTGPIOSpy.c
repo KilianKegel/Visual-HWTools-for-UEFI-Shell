@@ -27,7 +27,7 @@
     the Intel BayTrail(BYT) - Platform.\n
 
 @subsection ref_sec References
-    @note <a href="https://www.intel.com/content/www/us/en/embedded/products/bay-trail/atom-e3800-family-datasheet.html">https://www.intel.com/content/www/us/en/embedded/products/bay-trail/atom-e3800-family-datasheet.html</a>\n
+    @note <a href="https://www.mouser.com/datasheet/2/612/atom-e3800-family-datasheet-1522396.pdf">atom-e3800-family-datasheet-1522396.pdf</a>\n
     download BayTrail specification in external browser\n
 
     @subsection Parm_sec Command line parameters
@@ -41,7 +41,7 @@
 #include <string.h>
 #include "BYTGPIO.h"
 //
-//https://www.intel.com/content/www/us/en/embedded/products/bay-trail/atom-e3800-family-datasheet.html
+//"https://www.mouser.com/datasheet/2/612/atom-e3800-family-datasheet-1522396.pdf"
 //
 #define ELC(x) (sizeof(x) / sizeof(x[0]))
 

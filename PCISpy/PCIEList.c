@@ -23,13 +23,17 @@
 #include "BYTPCIE.h"
 #include "PCIEList.h"
 //
-////https://www.mouser.com/datasheet/2/612/atom-e3800-family-datasheet-1522396.pdf
+//https://www.mouser.com/datasheet/2/612/atom-e3800-family-datasheet-1522396.pdf
 //http://pciids.sourceforge.net/v2.2/pci.ids
 //http://www.ics.uci.edu/~harris/ics216/pci/PCI_22.pdf
 //
 
 extern CLASSCODE ClassCodes[]; ;/*! */
 extern VENDORID VendorID[];
+
+extern unsigned long GetPci8 (void* pAddr);
+extern unsigned long GetPci16(void* pAddr);
+extern unsigned long GetPci32(void* pAddr);
 
 /*! 
     @fn void PCIEList(int bus, int dev, int fun, PCIEDUMPPARM *pDumpFun)
@@ -49,11 +53,11 @@ void PCIEList(int bus, int dev, int fun, PCIELISTPARM *pDumpFun) {
 
     char fFound;
     unsigned HeaderType, cls = 6/*class*/, sub = 0/*sub class*/, ifc = 0/*interface*/, c, s, i, v;
-    unsigned *pPCIEReg32 = (unsigned *)((unsigned)pDumpFun->pciebase + (bus << 20) + (dev << 15) + (fun << 12) + 0);
+    //unsigned *pPCIEReg32 = (unsigned *)((unsigned)pDumpFun->pciebase + (bus << 20) + (dev << 15) + (fun << 12) + 0);
 
-    cls = 0xFF & pPCIEReg32[2] >> 24;
-    sub = 0xFF & pPCIEReg32[2] >> 16;
-    ifc = 0xFF & pPCIEReg32[2] >> 8;
+    cls = 0xFF & GetPci8((void*)((bus << 20) + (dev << 15) + (fun << 12) + 2 * 4 + 3));
+    sub = 0xFF & GetPci8((void*)((bus << 20) + (dev << 15) + (fun << 12) + 2 * 4 + 2));
+    ifc = 0xFF & GetPci8((void*)((bus << 20) + (dev << 15) + (fun << 12) + 2 * 4 + 1));
 
     for (c = 0, fFound = 0; -1 != ClassCodes[c].nClass; c++) {
 
@@ -85,7 +89,7 @@ void PCIEList(int bus, int dev, int fun, PCIELISTPARM *pDumpFun) {
 
     for (v = 0; NULL != VendorID[v].szVendor; v++)
     {
-        if ((unsigned)(pPCIEReg32[0] & 0xFFFF) == (unsigned)VendorID[v].wVendorID)
+        if ((unsigned)(GetPci16((void*)((bus << 20) + (dev << 15) + (fun << 12) + 0)) & 0xFFFF) == (unsigned)VendorID[v].wVendorID)
             break;
     }
 
