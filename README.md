@@ -16,6 +16,13 @@ Doing so, the UEFI Shell applications can be easily debugged
 on the Windows development platform, simply by building the sourcecode
 as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 
+## Projects/Tools
+[BYTGPIOSpy](BYTGPIOSpy\README.md)<br>
+[BYTPCIESpy](BYTPCIESpy\README.md)<br>
+[MEMSpy](MEMSpy\README.md)<br>
+[PCISpy](PCISpy\README.md)<br>
+[Vmode](Vmode\README.md)<br>
+
 ## HowTo
 https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an-uefi-development-pc
 
