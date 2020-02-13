@@ -1,4 +1,4 @@
-# MEMDMP32 - I/O dump
+# MEMDMP32 - memory dump
 MEM DUMP for all
 
 ## Introduction
