@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
     help(argc, argv);  // check command line parameter
 
     for (i = 0; i < 128 / TYPESIZE; i++)
-        printf((i % (16 / TYPESIZE) == 0 ? FORMATW_ADDR : FORMATWOADDR), (i % (16 / TYPESIZE) == 0 ? (void*)(i * TYPESIZE) : ""), TYPEMASK & rtcrd(i * TYPESIZE), ((i + 1) % (16 / TYPESIZE)) ? (((i + 1) % (8 / TYPESIZE)) ? " " : " - ") : "\n") /* <<-- with help Peter Kirmeier*/;
+        printf((i % (16 / TYPESIZE) == 0 ? FORMATW_ADDR : FORMATWOADDR), (i % (16 / TYPESIZE) == 0 ? (void*)(i * TYPESIZE) : ""), TYPEMASK & rtcrd(i * TYPESIZE), ((i + 1) % (16 / TYPESIZE)) ? (((i + 1) % (8 / TYPESIZE)) ? " " : " - ") : "\n");
 
 }
 
