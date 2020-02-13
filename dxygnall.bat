@@ -1,0 +1,1 @@
+for  /F %%a in ('dir /s /b dxygn.bat') do @echo %%a & cd %%~pa & call dxygn.bat & cd ..

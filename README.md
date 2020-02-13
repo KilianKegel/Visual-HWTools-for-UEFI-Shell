@@ -22,6 +22,22 @@ as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 [MEMSpy](MEMSpy)<br>
 [PCISpy](PCISpy)<br>
 [Vmode](Vmode)<br>
+### simple tools
+[iowr16](iowr16)<br>
+[iowr32](iowr32)<br>
+[iowr8](iowr8)<br>
+[memwr16](memwr16)<br>
+[memwr32](memwr32)<br>
+[memwr64](memwr64)<br>
+[memwr8](memwr8)<br>
+[iodmp16](iodmp16)<br>
+[iodmp32](iodmp32)<br>
+[iodmp8](iodmp8)<br>
+[memdmp16](memdmp16)<br>
+[memdmp32](memdmp32)<br>
+[memdmp64](memdmp64)<br>
+[memdmp8](memdmp8)<br>
+[rtcdmp](rtcdmp)<br>
 
 ## HowTo
 https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an-uefi-development-pc
@@ -29,6 +45,8 @@ https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an
 ## Revision history
 https://github.com/KilianKegel/torito-C-Library#revision-history
 
+### 20200213
+* add simple tools for memory and I/O access + RTC
 ### 20200210
 * add PCISPY sample
 * update various document links

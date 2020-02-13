@@ -25,8 +25,8 @@
     This program is used to list available video modes and to change them\n
 
 @subsection Parm_sec Command line parameters
-    1. vmode: list modes\n
-    2. vmode modenum: change to mode modenum
+    1. vmode w/o parameter: list modes\n
+    2. vmode <modenum>: change to mode modenum
 */
 #pragma warning(disable:4189)   // local variable is initialized but not referenced
 #pragma warning(disable:4101)   // unreferenced local variable

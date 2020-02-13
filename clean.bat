@@ -1,6 +1,11 @@
 @echo off
 echo clean up...
-
+if "%1" == "/all" (
+    rd /s /q x64
+    del /s *.chm
+)
+if exist libraries\UniDumpLibrary.lib del libraries\UniDumpLibrary.lib
+if exist x64\Release del /s /q x64\Release
 if exist x64 del /s x64\*.pdb
 if exist x64 del /s x64\*.map
 if exist x64 del /s x64\*.ilk
