@@ -1,4 +1,4 @@
-# MEMDMP8 - I/O dump
+# MEMDMP8 - memory dump
 MEM DUMP for all
 
 ## Introduction
