@@ -1,4 +1,4 @@
-# MEMDMP64 - I/O dump
+# MEMDMP64 - memory dump
 MEM DUMP for all
 
 ## Introduction
