@@ -1,4 +1,4 @@
-# MEMDMP16 - I/O dump
+# MEMDMP16 - memory dump
 MEM DUMP for all
 
 ## Introduction
