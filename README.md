@@ -22,7 +22,7 @@ as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 [MEMSpy](MEMSpy)<br>
 [PCISpy](PCISpy)<br>
 [Vmode](Vmode)<br>
-### simple tools
+### simple tools / one trick ponies
 [iowr16](iowr16)<br>
 [iowr32](iowr32)<br>
 [iowr8](iowr8)<br>
