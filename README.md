@@ -45,8 +45,7 @@ as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 [siodmp](siodmp)            |  Generic SuperI/O dump     |  
 
 ## Binaries
-https://github.com/KilianKegel/Visual-HWTools-for-UEFI-Shell/tree/master/x64
-https://github.com/KilianKegel/Visual-HWTools-for-UEFI-Shell/tree/master/x64/UEFIx86-64%20(Torito%20C%20Library)
+[EFI binaries](https://github.com/KilianKegel/Visual-HWTools-for-UEFI-Shell/tree/master/x64/UEFIx86-64%20(Torito%20C%20Library))
 
 ## HowTo
 https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an-uefi-development-pc
