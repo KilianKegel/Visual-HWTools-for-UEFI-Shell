@@ -41,7 +41,12 @@ as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 [memdmp32](memdmp32)        |  memory dump dword         |  
 [memdmp64](memdmp64)        |  memory dump qword         |  
 [memdmp8](memdmp8)          |  memory dump byte          |  
-[rtcdmp](rtcdmp)            |  RTC Real Time Clock dump     |  
+[rtcdmp](rtcdmp)            |  RTC Real Time Clock dump  |
+[siodmp](siodmp)            |  Generic SuperI/O dump     |  
+
+## Binaries
+https://github.com/KilianKegel/Visual-HWTools-for-UEFI-Shell/tree/master/x64
+https://github.com/KilianKegel/Visual-HWTools-for-UEFI-Shell/tree/master/x64/UEFIx86-64%20(Torito%20C%20Library)
 
 ## HowTo
 https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an-uefi-development-pc

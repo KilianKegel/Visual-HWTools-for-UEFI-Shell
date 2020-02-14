@@ -120,7 +120,7 @@ unsigned long GetPci8(void* pAddr)
 {
     unsigned long nRet;
     unsigned reg = (unsigned long long)pAddr & 0xFF;        // register
-    unsigned bdf = (unsigned long long)pAddr >> 12;         // bus dev fun at CF8
+    unsigned bdf = (unsigned)((unsigned long long)pAddr >> 12);         // bus dev fun at CF8
 
     outpd(0xCF8, 0x80000000 + (bdf << 8) + (reg & ~3));;
     nRet = 0xFF & inp(0xCFC + (reg & 3));
@@ -143,7 +143,7 @@ unsigned long GetPci16(void* pAddr)
 {
     unsigned long nRet;
     unsigned reg = (unsigned long long)pAddr & 0xFF;        // register
-    unsigned bdf = (unsigned long long)pAddr >> 12;         // bus dev fun at CF8
+    unsigned bdf = (unsigned)((unsigned long long)pAddr >> 12);         // bus dev fun at CF8
 
     outpd(0xCF8, 0x80000000 + (bdf << 8) + (reg & ~3));;
     nRet = 0xFFFF & inpw(0xCFC + (reg & 3));
@@ -166,7 +166,7 @@ unsigned long GetPci32(void* pAddr)
 {
     unsigned long nRet;
     unsigned reg = (unsigned long long)pAddr & 0xFF;        // register
-    unsigned bdf = (unsigned long long)pAddr >> 12;         // bus dev fun at CF8
+    unsigned bdf = (unsigned)((unsigned long long)pAddr >> 12);         // bus dev fun at CF8
 
     outpd(0xCF8, 0x80000000 + (bdf << 8) + (reg & ~3));;
     nRet = 0xFFFFFFFF & inpd(0xCFC + (reg & 3));
@@ -189,7 +189,7 @@ unsigned long SetPci32(void* pAddr,unsigned value)
 {
     unsigned long nRet;
     unsigned reg = (unsigned long long)pAddr & 0xFF;        // register
-    unsigned bdf = (unsigned long long)pAddr >> 12;         // bus dev fun at CF8
+    unsigned bdf = (unsigned)((unsigned long long)pAddr >> 12);         // bus dev fun at CF8
 
     outpd(0xCF8, 0x80000000 + (bdf << 8) + (reg & ~3));
     outpd(0xCFC, value);

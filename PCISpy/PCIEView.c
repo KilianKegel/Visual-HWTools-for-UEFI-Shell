@@ -226,14 +226,14 @@ void PCIEView( int bus, int dev, int fun, PCIEVIEWPARM *pPcieView ) {
 
             dwAddress = Mask & GetPci32((void*)(PCIEFunAddr + (i + 4) * 4));    // get address and mask non-address bits
 
-            SetPci32(PCIEFunAddr + (i + 4) * 4, (unsigned)-1);        // detct BAR ...
+            SetPci32((void*)(PCIEFunAddr + (i + 4) * 4), (unsigned)-1);        // detct BAR ...
 
             dwSize=1 + ( ~Mask | ~GetPci32((void*)(PCIEFunAddr + (i + 4) * 4)));
             dwSize &= fIOBar ? 0xFFFF : (unsigned)-1;
             dwSizeKB = dwSize / 1024;
             dwSizeMB = dwSizeKB / 1024;
 
-            SetPci32(PCIEFunAddr + (i + 4) * 4, dwAddress);        //restore address
+            SetPci32((void*)(PCIEFunAddr + (i + 4) * 4), dwAddress);        //restore address
             if ( 1| dwAddress ) {
                 printf( "BAR%d: Size 0x%08X(%u %sByte), Address 0x%08X %s%s%s\n",
                         i, dwSize,
