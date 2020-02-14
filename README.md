@@ -18,30 +18,30 @@ as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 ## Projects/Tools
 | Project   |      Description      |
 |----------|:-------------:|
-|[BYTGPIOSpy](BYTGPIOSpy)|GPIO Spy for Baytrail|
-|[BYTPCIESpy](BYTPCIESpy)|PCIEx Spy for Baytrail|
-|[MEMSpy](MEMSpy) -> memory dump, write, fill... <br>
-|[PCISpy](PCISpy)-> PCI dump, write, decode... <br>
-|[Vmode](Vmode) -> video mode list, switch<br>
+|[BYTGPIOSpy](BYTGPIOSpy)   |   GPIO Spy for Baytrail       |
+|[BYTPCIESpy](BYTPCIESpy)   |   PCIEx Spy for Baytrail      |
+|[MEMSpy](MEMSpy)           |   memory dump, write, fill     |
+|[PCISpy](PCISpy)           |   PCI dump, write, decode      |
+|[Vmode](Vmode)             |   video mode list, switch      |
 
-[BYTGPIOSpy](BYTGPIOSpy) -> GPIO Spy for Baytrail<br>
-[BYTPCIESpy](BYTPCIESpy) -> PCIEx Spy for Baytrail<br>
 ### simple tools / one trick ponies
-[iowr16](iowr16) -> I/O write word<br>
-[iowr32](iowr32) -> I/O write dword<br>
-[iowr8](iowr8) -> I/O write byte<br>
-[memwr16](memwr16) -> mem write word<br>
-[memwr32](memwr32) -> mem write dword<br>
-[memwr64](memwr64) -> mem write qword<br>
-[memwr8](memwr8) -> mem write byte<br>
-[iodmp16](iodmp16) -> I/O dump word<br>
-[iodmp32](iodmp32) -> I/O dump dword<br>
-[iodmp8](iodmp8) -> I/O dump byte<br>
-[memdmp16](memdmp16) -> memory dump word<br>
-[memdmp32](memdmp32) -> memory dump dword<br>
-[memdmp64](memdmp64) -> memory dump qword<br>
-[memdmp8](memdmp8) -> memory dump byte<br>
-[rtcdmp](rtcdmp) -> RTC Real Time Clock dump<br>
+| Project   |      Description      |
+|----------|:-------------:|
+[iowr16](iowr16)            |  I/O write word            |  
+[iowr32](iowr32)            |  I/O write dword           |  
+[iowr8](iowr8)              |  I/O write byte            |  
+[memwr16](memwr16)          |  mem write word            |  
+[memwr32](memwr32)          |  mem write dword           |  
+[memwr64](memwr64)          |  mem write qword           |  
+[memwr8](memwr8)            |  mem write byte            |  
+[iodmp16](iodmp16)          |  I/O dump word             |  
+[iodmp32](iodmp32)          |  I/O dump dword            |  
+[iodmp8](iodmp8)            |  I/O dump byte             |  
+[memdmp16](memdmp16)        |  memory dump word          |  
+[memdmp32](memdmp32)        |  memory dump dword         |  
+[memdmp64](memdmp64)        |  memory dump qword         |  
+[memdmp8](memdmp8)          |  memory dump byte          |  
+[rtcdmp](rtcdmp)            |  RTC Real Time Clock dump     |  
 
 ## HowTo
 https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an-uefi-development-pc
