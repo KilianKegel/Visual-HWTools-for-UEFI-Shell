@@ -15,13 +15,17 @@ Furthermore it is intended to use ANSI-C library functions as far as possible.
 Doing so, the UEFI Shell applications can be easily debugged
 on the Windows development platform, simply by building the sourcecode
 as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
-
 ## Projects/Tools
+| Project   |      Description      |
+|----------|:-------------:|
+|[BYTGPIOSpy](BYTGPIOSpy)|GPIO Spy for Baytrail|
+|[BYTPCIESpy](BYTPCIESpy)|PCIEx Spy for Baytrail|
+|[MEMSpy](MEMSpy) -> memory dump, write, fill... <br>
+|[PCISpy](PCISpy)-> PCI dump, write, decode... <br>
+|[Vmode](Vmode) -> video mode list, switch<br>
+
 [BYTGPIOSpy](BYTGPIOSpy) -> GPIO Spy for Baytrail<br>
 [BYTPCIESpy](BYTPCIESpy) -> PCIEx Spy for Baytrail<br>
-[MEMSpy](MEMSpy) -> memory dump, write, fill... <br>
-[PCISpy](PCISpy)-> PCI dump, write, decode... <br>
-[Vmode](Vmode) -> video mode list, switch<br>
 ### simple tools / one trick ponies
 [iowr16](iowr16) -> I/O write word<br>
 [iowr32](iowr32) -> I/O write dword<br>
