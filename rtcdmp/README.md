@@ -1,9 +1,9 @@
-# RTCDMP - real time clock (rtc) dump
+# RTCDMP - real time clock (RTC) dump
 RTC DUMP for all
 
 ## Introduction
 
-This program is used to dump the entire RTC bzte/wise
+This program is used to dump the entire RTC byte/wise
 
 ## References
 * [RTC](https://www.mouser.com/datasheet/2/612/atom-e3800-family-datasheet-1522396.pdf#page=4540)
