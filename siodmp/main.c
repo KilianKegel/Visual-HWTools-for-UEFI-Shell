@@ -60,7 +60,7 @@ unsigned siord8(int key, int cfgbase, int dev, int reg) {
     bRet = inp(DAT); IODELAY;
 
     outp(IDX, 0xAA); IODELAY;
-
+    //printf("Base: %02X Key: %02X reg: %02X -> %02X\n", cfgbase, key, reg, bRet);
     return bRet;
 }
 
@@ -80,12 +80,14 @@ int main(int argc, char** argv) {
                 ID_H = siord8(key, cfgbase, 0, 0x20);
                 ID_L = siord8(key, cfgbase, 0, 0x21);
 
-                if ((0xFF & ID_H) != 0xFF && (0xFF & ID_L) != 0xFF)
+                if ((0xFF & ID_H) != 0xFF || (0xFF & ID_L) != 0xFF)
                     break;
             }
+            if ((0xFF & ID_H) != 0xFF || (0xFF & ID_L) != 0xFF)
+                break;
         }
 
-        if (key > 0x87) {
+        if (cfgbase > 0x4e) {
             nRet = 1;
             puts("SuperI/O not found\n");
             break;
