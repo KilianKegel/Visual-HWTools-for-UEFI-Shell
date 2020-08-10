@@ -1,7 +1,7 @@
 # Visual-HWTools-for-UEFI-Shell
 
 ## Goal
-Demonstration off how to implement useful software tools to access
+Demonstration of how to implement useful software tools to access
 the Intel BayTrail (BYT) platform hardware or data structures directly or
 by UEFI API.
 
