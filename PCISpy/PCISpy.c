@@ -90,6 +90,7 @@ int chkcmdln(int argc, char** argv) {
     {
         printf("    PCISpy w/o parameter : list all devices, show device class and vendor\n");
         printf("    PCISpy /dump[8][16][32] [bus dev fun] : 8/16/32-bit hex-dump of a particular PCIe function\n");
+        printf("    PCISpy /wr[8][16][32] [bus dev fun reg val] : write 8/16/32-bit to  a particular PCIe function register\n");
         printf("    PCISpy /view [bus dev fun] : view bit fields of a particular PCIe function\n");
         printf("        additional /pcionly and /all can be used to limit to 256 headersize only\n        and to deal with all PCI devices.\n\n");
 
@@ -175,6 +176,54 @@ unsigned long GetPci32(void* pAddr)
 }
 
 /*!
+    @fn unsigned long SetPci8(void *pAddr, unsigned value)
+
+    @brief write a DWORD to a given PCI location
+
+    @details
+
+    @param[in] *pAddr
+
+    @return dword read
+*/
+unsigned long SetPci8(void* pAddr, unsigned value)
+{
+    unsigned long nRet;
+    unsigned reg = (unsigned long long)pAddr & 0xFF;                // register
+    unsigned bdf = (unsigned)((unsigned long long)pAddr >> 12);     // bus dev fun at CF8
+
+    outpd(0xCF8, 0x80000000 + (bdf << 8) + (reg & ~3));
+    outp(0xCFC, value);
+    nRet = 0xFF & inp(0xCFC + (reg & 3));
+    return nRet;
+
+}
+
+/*!
+    @fn unsigned long SetPci16(void *pAddr, unsigned value)
+
+    @brief write a DWORD to a given PCI location
+
+    @details
+
+    @param[in] *pAddr
+
+    @return dword read
+*/
+unsigned long SetPci16(void* pAddr, unsigned value)
+{
+    unsigned long nRet;
+    unsigned reg = (unsigned long long)pAddr & 0xFF;                // register
+    unsigned bdf = (unsigned)((unsigned long long)pAddr >> 12);     // bus dev fun at CF8
+
+    outpd(0xCF8, 0x80000000 + (bdf << 8) + (reg & ~3));
+    outpw(0xCFC, value);
+    nRet = 0xFFFF & inpw(0xCFC + (reg & 3));
+    return nRet;
+
+}
+
+/*!
     @fn unsigned long SetPci32(void *pAddr, unsigned value)
 
     @brief write a DWORD to a given PCI location
@@ -197,6 +246,7 @@ unsigned long SetPci32(void* pAddr,unsigned value)
     return nRet;
 
 }
+
 /*!
     @fn static unsigned WriteString(IN char *pszLineOfText)
 
@@ -354,6 +404,63 @@ int main(int argc, char** argv)
 
                         //UniDump(hexparms, gfPCI ? 256 : 4096, (unsigned long long)pciebase + (bus << 20) + (dev << 15) + (fun << 12) + 0, dumpparm[iDump].pfnDump81632, WriteString);
                         PCIEDump(bus, dev, fun, &DumpFunParm);
+                        fDone = 1;
+                    }
+                }
+            }
+
+            if (fDone)
+                break;
+        }
+//
+// write specific device register - /wr8 /wr16 /wr32
+//      
+        if (1) {
+            char fDone = 0;
+            for (i = 0; i < argc && 0 == fDone; i++) {
+                static struct {
+                    char* pszCmdLine;
+                    char  bDumpXYSizeMinusOne;
+                    void* pfnDump81632;
+                }writeparm[] = {
+                    { /*CommandLineString*/"/wr8" , /*size minus one */1 - 1, /*function to get element */&SetPci8 },
+                    { /*CommandLineString*/"/wr16", /*size minus one */2 - 1, /*function to get element */&SetPci16 },
+                    { /*CommandLineString*/"/wr32", /*size minus one */4 - 1, /*function to get element */&SetPci32 },
+                };
+                int iDump;
+
+                for (iDump = 0; iDump < ELC(writeparm); iDump++) {
+
+                    if (0 == strcmp(writeparm[iDump].pszCmdLine, argv[i])) {
+                        int bus, dev, fun, reg, val;
+                        UNIDUMPPARM hexparms = { .reg = 0, };
+                        PCIEDUMPPARM DumpFunParm = { pciebase, &hexparms, writeparm[iDump].pfnDump81632,gfPCI ? 256 : 4096 };
+
+                        hexparms.bit.nAddrSize = 2;
+                        hexparms.bit.elmsizemin1 = writeparm[iDump].bDumpXYSizeMinusOne;
+
+                        if (argc < i + 1 + 4/*bus,dev,fun,val*/) {
+                            fprintf(stderr, "Missing bus dev fun val parameter\n");
+                            fprintf(stdout, "\n");// fix new line bug of the shell
+                            fDone = 1;
+                            break;
+                        }
+
+                        sscanf(argv[i + 1], "%x", &bus);// get bus from the commandline
+                        sscanf(argv[i + 2], "%x", &dev);// get dev from the commandline
+                        sscanf(argv[i + 3], "%x", &fun);// get fun from the commandline
+                        sscanf(argv[i + 3], "%x", &reg);// get fun from the commandline
+                        sscanf(argv[i + 4], "%x", &val);// get fun from the commandline
+
+                        switch (writeparm[iDump].bDumpXYSizeMinusOne)
+                        {
+                        case 0:/*1 - 1*/
+                            SetPci8((void*) ((long long)pciebase + (bus << 20) + (dev << 15) + (fun << 12) + reg), val); break;
+                        case 1:/*2 - 1*/
+                            SetPci16((void*)((long long)pciebase + (bus << 20) + (dev << 15) + (fun << 12) + reg), val); break;
+                        case 3:/*4 - 1*/
+                            SetPci32((void*)((long long)pciebase + (bus << 20) + (dev << 15) + (fun << 12) + reg), val); break;
+                        }
                         fDone = 1;
                     }
                 }
