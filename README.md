@@ -22,6 +22,7 @@ as a Win64-executable (change the solution configuration from Efi64 to Win64 ).
 |[BYTPCIESpy](BYTPCIESpy)   |   PCIEx Spy for Baytrail      |
 |[MEMSpy](MEMSpy)           |   memory dump, write, fill     |
 |[PCISpy](PCISpy)           |   PCI dump, write, decode      |
+|[NVRAMSpy](NVRAMSpy)       |   NVRAM dump, write            |
 |[Vmode](Vmode)             |   video mode list, switch      |
 
 ### simple tools / one trick ponies
@@ -53,6 +54,8 @@ https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an
 ## Revision history
 https://github.com/KilianKegel/torito-C-Library#revision-history
 
+### 20201217
+* add simple NVRAMSpy to list and dump NVRAM variables on a UEFI platform
 ### 20200213
 * add simple tools for memory and I/O access + RTC
 ### 20200210

@@ -115,6 +115,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "siodmp", "siodmp\siodmp.vcx
 		{44318EC3-5F68-458E-B110-2CF32114745F} = {44318EC3-5F68-458E-B110-2CF32114745F}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NVRAMSpy", "NVRAMSpy\NVRAMSpy.vcxproj", "{6DE19A86-885F-417F-94B7-C04CE9E1BEDB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{44318EC3-5F68-458E-B110-2CF32114745F} = {44318EC3-5F68-458E-B110-2CF32114745F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		UEFIx86-64 (Torito C Library)|x64 = UEFIx86-64 (Torito C Library)|x64
@@ -253,6 +258,12 @@ Global
 		{30D5CEBC-0198-45DD-8648-5BBE5553798D}.WinNTx86-64 (Microsoft C Library)|x64.Build.0 = WinNTx86-64 (Microsoft C Library)|x64
 		{30D5CEBC-0198-45DD-8648-5BBE5553798D}.WinNTx86-64 (Torito C Library)|x64.ActiveCfg = WinNTx86-64 (Torito C Library)|x64
 		{30D5CEBC-0198-45DD-8648-5BBE5553798D}.WinNTx86-64 (Torito C Library)|x64.Build.0 = WinNTx86-64 (Torito C Library)|x64
+		{6DE19A86-885F-417F-94B7-C04CE9E1BEDB}.UEFIx86-64 (Torito C Library)|x64.ActiveCfg = UEFIx86-64 (Torito C Library)|x64
+		{6DE19A86-885F-417F-94B7-C04CE9E1BEDB}.UEFIx86-64 (Torito C Library)|x64.Build.0 = UEFIx86-64 (Torito C Library)|x64
+		{6DE19A86-885F-417F-94B7-C04CE9E1BEDB}.WinNTx86-64 (Microsoft C Library)|x64.ActiveCfg = WinNTx86-64 (Microsoft C Library)|x64
+		{6DE19A86-885F-417F-94B7-C04CE9E1BEDB}.WinNTx86-64 (Microsoft C Library)|x64.Build.0 = WinNTx86-64 (Microsoft C Library)|x64
+		{6DE19A86-885F-417F-94B7-C04CE9E1BEDB}.WinNTx86-64 (Torito C Library)|x64.ActiveCfg = WinNTx86-64 (Torito C Library)|x64
+		{6DE19A86-885F-417F-94B7-C04CE9E1BEDB}.WinNTx86-64 (Torito C Library)|x64.Build.0 = WinNTx86-64 (Torito C Library)|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
