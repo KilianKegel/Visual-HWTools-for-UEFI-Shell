@@ -169,7 +169,7 @@ int UniDump(UNIDUMPPARM ctrl, unsigned elmcount, unsigned long long startaddr, u
         }
     }
 //
-// after glow - print remaining ASCII chars
+// post processing - print remaining ASCII chars
 //
     if (1) {
         unsigned rem = u % nLineLength/*remining hex numbers (filled w/ space)*/;
