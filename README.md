@@ -1,5 +1,5 @@
 # Visual-HWTools-for-UEFI-Shell
-
+![visualUefi](https://github.com/KilianKegel/Visual-Studio-for-UEFI-Shell/blob/master/visualUefiWide.png)
 ## Goal
 Demonstration of how to implement useful software tools to access
 the Intel BayTrail (BYT) platform hardware or data structures directly or
