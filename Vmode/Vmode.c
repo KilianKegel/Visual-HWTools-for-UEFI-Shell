@@ -40,7 +40,7 @@
 #include <uefi.h>
 #include <protocol\GraphicsOutput.h>
 
-extern char* strefierror(EFI_STATUS errcode);
+extern char* _strefierror(EFI_STATUS errcode);
 
 int main(int argc, char** argv) {
     int nRet = 1;
@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
         Status = SystemTable->BootServices->LocateProtocol(&guidGOP, NULL, (void**)&pGOP);
 
         if (EFI_SUCCESS != Status) {
-            fprintf(stderr, "%s(%d)/%s() Status -> %s\n", __FILE__, __LINE__, __FUNCTION__, strefierror(Status));
+            fprintf(stderr, "%s(%d)/%s() Status -> %s\n", __FILE__, __LINE__, __FUNCTION__, _strefierror(Status));
             nRet = 1;
             break;
         }
@@ -77,7 +77,7 @@ int main(int argc, char** argv) {
         Status = SystemTable->BootServices->LocateProtocol(&guidSTOP, NULL, (void**)&pSTOP);
 
         if (EFI_SUCCESS != Status) {
-            fprintf(stderr, "%s(%d)/%s Status -> %s\n", __FILE__, __LINE__, __FUNCTION__, strefierror(Status));
+            fprintf(stderr, "%s(%d)/%s Status -> %s\n", __FILE__, __LINE__, __FUNCTION__, _strefierror(Status));
             return 1;
         }
 
