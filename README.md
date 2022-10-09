@@ -52,6 +52,18 @@ https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an
 
 ## Revision history
 https://github.com/KilianKegel/torito-C-Library#revision-history
+### 20221001
+* simplify interaction of various **VISUAL-xyz** components, unitize directory structure 
+  and import/export interface for those solutions
+    * output folder for **Configuration Type: static Library** is commonly **$(SolutionPath)**\\***lib***
+      to share one single *library folder* for all imported subprojects
+    * adjust include path to be **$(ProjectDir)** relative
+* update to **TORO C Library** *20220731*
+* improve [`UniDumpLibrary`](https://github.com/KilianKegel/Visual-HWTools-for-UEFI-Shell/blob/master/UniDumpLibrary/UniDump.c#L55)
+  to display all *isgraph()* ASCII characters
+* add `Debug` configuration to `UniDumpLibrary`
+**TODO:** add context pointer to the writer callback
+
 ### 20220502
 * update to **TORO C Library** *20220501*
 ### 20211101

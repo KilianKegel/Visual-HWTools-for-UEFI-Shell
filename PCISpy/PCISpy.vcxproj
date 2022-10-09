@@ -175,11 +175,11 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <FixedBaseAddress>false</FixedBaseAddress>
       <DataExecutionPrevention>false</DataExecutionPrevention>
-      <AdditionalDependencies>$(SolutionDir)lib\toroC64.lib;$(SolutionDir)x64\UniDumpLibrary.lib</AdditionalDependencies>
+      <AdditionalDependencies>toroC64.lib;UniDumpLibrary.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <AllowIsolation>true</AllowIsolation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>..\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib;$(ProjectDir)lib;</AdditionalLibraryDirectories>
       <OutputFile>$(OutDir)$(TargetName).efi</OutputFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)$(TargetName).map</MapFileName>
