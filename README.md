@@ -64,6 +64,8 @@ https://github.com/KilianKegel/torito-C-Library#revision-history
 * add `Debug` configuration to `UniDumpLibrary`
 **TODO:** add context pointer to the writer callback
 
+### 20221024
+* update to **TORO C Library** *20221022*
 ### 20220502
 * update to **TORO C Library** *20220501*
 ### 20211101
