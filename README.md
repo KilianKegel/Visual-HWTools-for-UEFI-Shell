@@ -52,6 +52,8 @@ https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an
 
 ## Revision history
 https://github.com/KilianKegel/torito-C-Library#revision-history
+### 20230910
+* update to **TORO C Library** *20230909*
 ### 20221001
 * simplify interaction of various **VISUAL-xyz** components, unitize directory structure 
   and import/export interface for those solutions
